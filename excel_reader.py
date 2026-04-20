@@ -176,18 +176,21 @@ def _read_slings(ws):
     mbl      = _require_num(ws, "D12", "MBL")
     material = _txt(ws, "D13")
     terminat = _txt(ws, "D14")
-    d_bend   = _require_num(ws, "D15", "Bending diameter")
-    d_item   = _require_num(ws, "D16", "Item diameter")
-    d_over_d = _require_num(ws, "D17", "D/d")
+    d_bend   = _num(ws, "D15")
+    d_item   = _num(ws, "D16")
+    d_over_d = _num(ws, "D17")
 
     general_rows = [
         {"desc": _txt(ws, "B12"), "formula": f"MBL = {fmt(mbl)}",        "comment": _txt(ws, "E12")},
         {"desc": _txt(ws, "B13"), "formula": material,                    "comment": _txt(ws, "E13")},
         {"desc": _txt(ws, "B14"), "formula": terminat,                    "comment": _txt(ws, "E14")},
-        {"desc": _txt(ws, "B15"), "formula": f"D = {fmt(d_bend)}",       "comment": _txt(ws, "E15")},
-        {"desc": _txt(ws, "B16"), "formula": f"d = {fmt(d_item)}",       "comment": _txt(ws, "E16")},
-        {"desc": _txt(ws, "B17"), "formula": f"D/d = {fmt(d_over_d)}",   "comment": _txt(ws, "E17")},
     ]
+    if d_bend is not None:
+        general_rows.append({"desc": _txt(ws, "B15"), "formula": f"D = {fmt(d_bend)}",     "comment": _txt(ws, "E15")})
+    if d_item is not None:
+        general_rows.append({"desc": _txt(ws, "B16"), "formula": f"d = {fmt(d_item)}",     "comment": _txt(ws, "E16")})
+    if d_over_d is not None:
+        general_rows.append({"desc": _txt(ws, "B17"), "formula": f"D/d = {fmt(d_over_d)}", "comment": _txt(ws, "E17")})
 
     yb   = _require_num(ws, "D20", "γb")
     ys   = _require_num(ws, "D21", "γs")
