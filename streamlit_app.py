@@ -22,9 +22,9 @@ if "page_list" not in st.session_state:
 
 # ── Description ───────────────────────────────────────────────────────────────
 st.markdown(
-    "This tool generates a structured PDF report from a rigging calculations Excel workbook. "
-    "Fill in the template with your project data, upload it here (optionally together with "
-    "images in a ZIP), and download a ready-to-use report."
+    "This tool generates a PDF report from a rigging calculations Excel workbook. "
+    "Download the template below, fill in calculations, and upload it here to generate the report."
+    "Pictures can be added, removed or replaced below."
 )
 st.divider()
 
